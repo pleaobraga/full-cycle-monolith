@@ -1,5 +1,5 @@
 export interface FindProductInputDTO {
-  productId: string
+  id: string
 }
 
 export interface FindProductOutputDTO {

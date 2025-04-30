@@ -20,13 +20,13 @@ describe('Find Product UseCase unit test', () => {
     const findAllProductsUseCase = new FindProductUseCase(productRepository)
 
     const input = {
-      productId: '1'
+      id: '1'
     }
 
     const result = await findAllProductsUseCase.execute(input)
 
     expect(productRepository.find).toHaveBeenCalled()
-    expect(productRepository.find).toHaveBeenCalledWith(input.productId)
+    expect(productRepository.find).toHaveBeenCalledWith(input.id)
     expect(result).toEqual({
       id: '1',
       name: 'Product 1',

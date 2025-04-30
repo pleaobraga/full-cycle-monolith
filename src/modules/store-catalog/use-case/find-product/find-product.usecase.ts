@@ -6,7 +6,7 @@ export class FindProductUseCase implements UsecaseInterface {
   constructor(private readonly productGateway: ProductGateway) {}
 
   async execute(input: FindProductInputDTO): Promise<FindProductOutputDTO> {
-    const product = await this.productGateway.find(input.productId)
+    const product = await this.productGateway.find(input.id)
 
     return {
       id: product.id.id,
