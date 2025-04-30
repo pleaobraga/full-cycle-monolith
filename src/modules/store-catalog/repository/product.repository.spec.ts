@@ -49,27 +49,22 @@ describe('Product Repository', () => {
     expect(products[1].salesPrice).toBe(200)
   })
 
-  // it('should find a product', async () => {
-  //   const productProps = {
-  //     id: new Id(),
-  //     name: 'Product 1',
-  //     description: 'Description 1',
-  //     purchasePrice: 100,
-  //     stock: 10
-  //   }
+  it('should find a product', async () => {
+    await ProductModel.create({
+      id: '1',
+      name: 'Product 1',
+      description: 'Description 1',
+      salesPrice: 100
+    })
 
-  //   const product = new Product(productProps)
+    const productRepository = new ProductRepository()
 
-  //   const productRepository = new ProductRepository()
-  //   await productRepository.add(product)
+    const foundProduct = await productRepository.find('1')
 
-  //   const foundProduct = await productRepository.find(product.id.id)
-
-  //   expect(foundProduct).toBeDefined()
-  //   expect(foundProduct.id.id).toBe(product.id.id)
-  //   expect(foundProduct.name).toBe(product.name)
-  //   expect(foundProduct.description).toBe(product.description)
-  //   expect(foundProduct.purchasePrice).toBe(product.purchasePrice)
-  //   expect(foundProduct.stock).toBe(product.stock)
-  // })
+    expect(foundProduct).toBeDefined()
+    expect(foundProduct.id.id).toBe('1')
+    expect(foundProduct.name).toBe('Product 1')
+    expect(foundProduct.description).toBe('Description 1')
+    expect(foundProduct.salesPrice).toBe(100)
+  })
 })
