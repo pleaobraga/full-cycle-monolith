@@ -3,7 +3,6 @@ import { ProductModel } from './product.model'
 import { ProductRepository } from './product.repository'
 import { Product } from '../domain/product.entity'
 import { Id } from '../../@shared/domain/value-object/id.value-object'
-import e from 'express'
 
 let sequelize: Sequelize
 describe('Product Repository', () => {
