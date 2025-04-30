@@ -1,11 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 import { ProductModel } from '../repository/product.model'
-import { Id } from '../../@shared/domain/value-object/id.value-object'
-import { ProductRepository } from '../repository/product.repository'
-import { Product } from '../domain/product.entity'
-import { ProductAdmFacade } from './product-adm.facade'
-import { UsecaseInterface } from '../../@shared/use-case/use-case.interface'
-import { AddProductUseCase } from '../use-case/add-product.usecase'
+import { ProductAdmFacadeFactory } from '../factory/facade.factory'
 
 let sequelize: Sequelize
 describe('Product Adm Facade', () => {
@@ -26,17 +21,7 @@ describe('Product Adm Facade', () => {
   })
 
   it('should add a product', async () => {
-    const productRepository = new ProductRepository()
-    const addProductUseCase = new AddProductUseCase(productRepository)
-
-    const mockUsecase: UsecaseInterface = {
-      execute: jest.fn()
-    }
-
-    const productAdmFacade = new ProductAdmFacade({
-      addUseCase: addProductUseCase,
-      checkStockUseCase: mockUsecase
-    })
+    const productAdmFacade = ProductAdmFacadeFactory.create()
 
     const input = {
       id: '1',
@@ -48,9 +33,12 @@ describe('Product Adm Facade', () => {
 
     await productAdmFacade.addProduct(input)
 
-    const product = await productRepository.find(input.id)
+    const product = (await ProductModel.findOne({
+      where: { id: input.id }
+    })) as ProductModel
+
     expect(product).toBeDefined()
-    expect(product.id.id).toBe(input.id)
+    expect(product.id).toBe(input.id)
     expect(product.name).toBe(input.name)
     expect(product.description).toBe(input.description)
     expect(product.purchasePrice).toBe(input.purchasePrice)
