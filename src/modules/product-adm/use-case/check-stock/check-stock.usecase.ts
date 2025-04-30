@@ -6,9 +6,7 @@ export class CheckStockUseCase {
 
   async execute(input: CheckStockInputDTO): Promise<CheckStockOutputDTO> {
     const product = await this.productRepository.find(input.productId)
-    if (!product) {
-      throw new Error('Product not found')
-    }
+
     return {
       productId: product.id.id,
       stock: product.stock

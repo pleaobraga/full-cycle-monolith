@@ -1,23 +1,19 @@
-import {
-  AddProductFacadeInputDto,
-  CheckStockFacadeInputDto
-} from '../facade/product-adm.facade.interface'
+import { ProductAdmFacade } from '../facade/product-adm.facade'
 import { ProductRepository } from '../repository/product.repository'
 import { AddProductUseCase } from '../use-case/add-product/add-product.usecase'
+import { CheckStockUseCase } from '../use-case/check-stock/check-stock.usecase'
 
 export class ProductAdmFacadeFactory {
   static create() {
     const productRepository = new ProductRepository()
     const addProductUseCase = new AddProductUseCase(productRepository)
-    // const checkStockUseCase = new CheckStockUseCase(productRepository)
+    const checkStockUseCase = new CheckStockUseCase(productRepository)
 
-    return {
-      addProduct: async (input: AddProductFacadeInputDto) => {
-        return await addProductUseCase.execute(input)
-      }
-      //   checkStock: async (input: CheckStockFacadeInputDto) => {
-      //     return await checkStockUseCase.execute(input)
-      //   },
-    }
+    const productFacade = new ProductAdmFacade({
+      addUseCase: addProductUseCase,
+      checkStockUseCase: checkStockUseCase
+    })
+
+    return productFacade
   }
 }
