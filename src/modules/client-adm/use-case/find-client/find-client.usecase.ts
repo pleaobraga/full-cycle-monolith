@@ -1,8 +1,9 @@
-import { UsecaseInterface } from '../../../../@shared/use-case/use-case.interface'
-import { ClientGateway } from '../../../gateway/client.gateway'
+
+import { UsecaseInterface } from '../../../@shared/use-case/use-case.interface'
+import { ClientGateway } from '../../gateway/client.gateway'
 import { FindClientInputDTO, FindClientOutputDTO } from './find-client'
 
-export class FindClienttUseCase implements UsecaseInterface {
+export class FindClientUseCase implements UsecaseInterface {
   constructor(private readonly clienttGateway: ClientGateway) {}
 
   async execute(input: FindClientInputDTO): Promise<FindClientOutputDTO> {
