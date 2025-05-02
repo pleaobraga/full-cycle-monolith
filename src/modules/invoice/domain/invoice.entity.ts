@@ -4,7 +4,7 @@ import { Address } from '../../@shared/domain/value-object/adress.value-object'
 import { Id } from '../../@shared/domain/value-object/id.value-object'
 
 interface InvoiceItem {
-  id?: Id
+  id: Id
   name: string
   price: number
 }

@@ -2,11 +2,34 @@ import { Address } from '../../@shared/domain/value-object/adress.value-object'
 import { Id } from '../../@shared/domain/value-object/id.value-object'
 import { Invoice } from '../domain/invoice.entity'
 import { InvoiceGateway } from '../gateway/invoice.gateway'
+import { InvoiceItemModel } from './invoice-item.model'
 import { InvoiceModel } from './invoice.model'
 
 export class InvoiceRepository implements InvoiceGateway {
-  generate(invoice: Invoice): Promise<void> {
-    throw new Error('Method not implemented.')
+  async generate(invoice: Invoice): Promise<void> {
+    await InvoiceModel.create(
+      {
+        id: invoice.id.id,
+        name: invoice.name,
+        document: invoice.document,
+        street: invoice.address.street,
+        number: invoice.address.number,
+        complement: invoice.address.complement,
+        city: invoice.address.city,
+        state: invoice.address.state,
+        zipCode: invoice.address.zipCode,
+        createdAt: invoice.createdAt,
+        updatedAt: invoice.updatedAt,
+        items: invoice.items.map((item) => ({
+          id: item.id.id,
+          name: item.name,
+          price: item.price
+        }))
+      },
+      {
+        include: [InvoiceItemModel]
+      }
+    )
   }
 
   async find(id: string): Promise<Invoice> {
