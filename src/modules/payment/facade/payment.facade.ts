@@ -5,7 +5,7 @@ import PaymentFacadeInterface, {
 } from "./facade.interface";
 
 export default class PaymentFacade implements PaymentFacadeInterface {
-  constructor(private processPaymentUseCase: UsecaseInterface) {}
+  constructor(private readonly processPaymentUseCase: UsecaseInterface) {}
   process(input: PaymentFacadeInputDto): Promise<PaymentFacadeOutputDto> {
     return this.processPaymentUseCase.execute(input);
   }
