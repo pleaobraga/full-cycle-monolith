@@ -48,12 +48,12 @@ describe('Invoice Repository', () => {
       updatedAt: new Date()
     })
 
-    await repo.generate(invoice)
+    await repo.create(invoice)
 
-    const dbInvoice = await InvoiceModel.findOne({
+    const dbInvoice = (await InvoiceModel.findOne({
       where: { id: 'inv-1' },
       include: [InvoiceItemModel]
-    }) as InvoiceModel
+    })) as InvoiceModel
 
     expect(dbInvoice).toBeTruthy()
     expect(dbInvoice.id).toBe('inv-1')

@@ -6,7 +6,7 @@ import { InvoiceItemModel } from './invoice-item.model'
 import { InvoiceModel } from './invoice.model'
 
 export class InvoiceRepository implements InvoiceGateway {
-  async generate(invoice: Invoice): Promise<void> {
+  async create(invoice: Invoice): Promise<void> {
     await InvoiceModel.create(
       {
         id: invoice.id.id,
