@@ -53,11 +53,26 @@ describe('Invoice Repository', () => {
     const dbInvoice = await InvoiceModel.findOne({
       where: { id: 'inv-1' },
       include: [InvoiceItemModel]
-    })
+    }) as InvoiceModel
 
     expect(dbInvoice).toBeTruthy()
-    expect(dbInvoice!.items.length).toBe(2)
-    expect(dbInvoice!.items[0].name).toBe('Product A')
+    expect(dbInvoice.id).toBe('inv-1')
+    expect(dbInvoice.name).toBe('John Doe')
+    expect(dbInvoice.document).toBe('123456789')
+    expect(dbInvoice.street).toBe('Street 1')
+    expect(dbInvoice.number).toBe('123')
+    expect(dbInvoice.complement).toBe('Apt 4')
+    expect(dbInvoice.city).toBe('City')
+    expect(dbInvoice.state).toBe('State')
+    expect(dbInvoice.zipCode).toBe('12345-678')
+    expect(dbInvoice.createdAt).toBeInstanceOf(Date)
+    expect(dbInvoice.updatedAt).toBeInstanceOf(Date)
+    expect(dbInvoice.items).toBeTruthy()
+    expect(dbInvoice.items.length).toBe(2)
+    expect(dbInvoice.items[0].name).toBe('Product A')
+    expect(dbInvoice.items[0].price).toBe(100)
+    expect(dbInvoice.items[1].name).toBe('Product B')
+    expect(dbInvoice.items[1].price).toBe(200)
   })
 
   it('should find an invoice', async () => {
