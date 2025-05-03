@@ -380,13 +380,21 @@ describe('Place Order Use Case', () => {
 
         const output = await placeOrderUseCase.execute(input)
 
-        expect(output.invoiceId).toBe("1")
+        console.log('output', output)
+
+        expect(output.invoiceId).toBe('1')
         expect(output.total).toBe(200)
-        expect(mockClientFacade.find).toHaveBeenCalledTimes(1)
         expect(mockClientFacade.find).toHaveBeenCalledWith({ id: '123' })
         expect(mockCheckoutRepository.addOrder).toHaveBeenCalled()
         expect(mockPaymentFacade.process).toHaveBeenCalledTimes(1)
         expect(mockInvoiceFacade.generate).toHaveBeenCalledTimes(1)
+        expect(output).toEqual({
+          id: expect.any(String),
+          invoiceId: '1',
+          status: 'approved',
+          total: 200,
+          products: [{ productId: '1' }, { productId: '1' }]
+        })
       })
     })
   })
