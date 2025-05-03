@@ -7,7 +7,7 @@ export interface PlaceOrderInputDTO {
 
 export interface PlaceOrderOutputDTO {
   id: string
-  invoiceId: string
+  invoiceId: string | null
   status: string
   total: number
   products: {
