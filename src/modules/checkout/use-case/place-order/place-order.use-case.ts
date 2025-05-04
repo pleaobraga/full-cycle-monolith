@@ -115,8 +115,6 @@ export class PlaceOrderUseCase implements UsecaseInterface {
         throw new Error('Product out of stock')
       }
     }
-
-    // Add more validation logic here if needed
   }
 
   private async getProduct(productId: string): Promise<Product> {
