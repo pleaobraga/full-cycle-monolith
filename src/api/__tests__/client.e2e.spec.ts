@@ -1,12 +1,13 @@
 import request from 'supertest'
-import { app, sequelize } from '../express'
+import { app, migration, sequelize, setupDb } from '../express'
 
 describe('Client API E2E Test', () => {
   beforeEach(async () => {
-    await sequelize.sync({ force: true })
+    await setupDb()
   })
 
-  afterAll(async () => {
+  afterEach(async () => {
+    await migration.down()
     await sequelize.close()
   })
 

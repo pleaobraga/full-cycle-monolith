@@ -53,8 +53,13 @@ export class PlaceOrderUseCase implements UsecaseInterface {
     const myClient = new Client({
       id: new Id(client.id),
       name: client.name,
-      address: client.address,
-      email: client.email
+      email: client.email,
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipCode
     })
 
     const order = new Order({
@@ -72,12 +77,12 @@ export class PlaceOrderUseCase implements UsecaseInterface {
         ? await this._invoiceFacade.generate({
             name: client.name,
             document: '12346',
-            street: client.address,
-            number: client.address,
-            complement: client.address,
-            city: client.address,
-            state: client.address,
-            zipCode: client.address,
+            street: client.street,
+            number: client.number,
+            complement: client.complement,
+            city: client.city,
+            state: client.state,
+            zipCode: client.zipCode,
             items: products.map((product) => ({
               id: product.id.id,
               name: product.name,

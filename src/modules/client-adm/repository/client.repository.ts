@@ -9,7 +9,12 @@ export class ClientRepository implements ClientGateway {
       id: client.id.id,
       name: client.name,
       email: client.email,
-      address: client.address,
+      street: client.address.street,
+      number: client.address.number,
+      complement: client.address.complement,
+      city: client.address.city,
+      state: client.address.state,
+      zipCode: client.address.zipCode,
       createdAt: new Date(),
       updatedAt: new Date()
     })
@@ -28,7 +33,12 @@ export class ClientRepository implements ClientGateway {
       id: new Id(client.id),
       name: client.name,
       email: client.email,
-      address: client.address
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipCode
     })
   }
 }

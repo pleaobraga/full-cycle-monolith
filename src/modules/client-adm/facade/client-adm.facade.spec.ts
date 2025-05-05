@@ -26,7 +26,12 @@ describe('Client Adm Facade', () => {
       id: '1',
       name: 'Client 1',
       email: 'email',
-      address: 'address',
+      street: 'Main St',
+      number: 42,
+      complement: 'Apt 5',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105',
       createdAt: new Date(),
       updatedAt: new Date()
     })
@@ -37,7 +42,12 @@ describe('Client Adm Facade', () => {
       id: '1',
       name: 'Client 1',
       email: 'email',
-      address: 'address'
+      street: 'Main St',
+      number: 42,
+      complement: 'Apt 5',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105'
     })
   })
 
@@ -46,9 +56,14 @@ describe('Client Adm Facade', () => {
 
     const input = {
       id: '1',
-      name: 'Product 1',
+      name: 'Client 1',
       email: 'email',
-      address: 'address'
+      street: 'Main St',
+      number: 42,
+      complement: 'Apt 5',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105'
     }
 
     await clientAdmFacade.add(input)
@@ -61,6 +76,11 @@ describe('Client Adm Facade', () => {
     expect(client.id).toBe(input.id)
     expect(client.name).toBe(input.name)
     expect(client.email).toBe(input.email)
-    expect(client.address).toBe(input.address)
+    expect(client.street).toBe(input.street)
+    expect(client.number).toBe(input.number)
+    expect(client.complement).toBe(input.complement)
+    expect(client.city).toBe(input.city)
+    expect(client.state).toBe(input.state)
+    expect(client.zipCode).toBe(input.zipCode)
   })
 })

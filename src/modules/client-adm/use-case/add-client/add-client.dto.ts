@@ -2,14 +2,24 @@ export interface AddClientInputDTO {
   id?: string
   name: string
   email: string
-  address: string
+  street: string
+  number: number
+  complement: string
+  city: string
+  state: string
+  zipCode: string
 }
 
-export interface AddclientOutputDTO {
+export interface AddClientOutputDTO {
   id: string
   name: string
   email: string
-  address: string
+  street: string
+  number: number
+  complement: string
+  city: string
+  state: string
+  zipCode: string
   createdAt: Date
   updatedAt: Date
 }

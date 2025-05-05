@@ -12,10 +12,14 @@ describe('Add Client UseCase unit test', () => {
     const addCLientProductsUseCase = new AddClientUseCase(productRepository)
 
     const input = {
-      id: '1',
-      name: 'Product 1',
-      email: 'test@123.com',
-      address: 'Address 1'
+      name: 'Alice Smith',
+      email: 'alice@example.com',
+      street: 'Main St',
+      number: 42,
+      complement: 'Apt 5',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105'
     }
 
     const result = await addCLientProductsUseCase.execute(input)
@@ -24,9 +28,14 @@ describe('Add Client UseCase unit test', () => {
 
     expect(result).toEqual({
       id: expect.any(String),
-      name: 'Product 1',
-      email: 'test@123.com',
-      address: 'Address 1',
+      name: 'Alice Smith',
+      email: 'alice@example.com',
+      street: 'Main St',
+      number: 42,
+      complement: 'Apt 5',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105',
       createdAt: expect.any(Date),
       updatedAt: expect.any(Date)
     })

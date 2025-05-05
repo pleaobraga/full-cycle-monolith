@@ -27,7 +27,7 @@ export interface GenerateInvoiceFacadeInputDto {
   name: string
   document: string
   street: string
-  number: string
+  number: number
   complement: string
   city: string
   state: string
@@ -44,7 +44,7 @@ export interface GenerateInvoiceFacadeOutputDto {
   name: string
   document: string
   street: string
-  number: string
+  number: number
   complement: string
   city: string
   state: string

@@ -27,7 +27,12 @@ describe('Client Repository', () => {
       id: new Id(),
       name: 'Client 1',
       email: 'email',
-      address: 'address'
+      street: 'Main St',
+      number: 42,
+      complement: 'Apt 5',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105'
     }
 
     const client = new Client(clientProps)
@@ -43,7 +48,12 @@ describe('Client Repository', () => {
     expect(clientDb?.id).toBe(client.id.id)
     expect(clientDb?.name).toBe(client.name)
     expect(clientDb?.email).toBe(client.email)
-    expect(clientDb?.address).toBe(client.address)
+    expect(clientDb?.street).toBe(client.address.street)
+    expect(clientDb?.number).toBe(client.address.number)
+    expect(clientDb?.complement).toBe(client.address.complement)
+    expect(clientDb?.city).toBe(client.address.city)
+    expect(clientDb?.state).toBe(client.address.state)
+    expect(clientDb?.zipCode).toBe(client.address.zipCode)
   })
 
   it('should find a client', async () => {
@@ -51,7 +61,12 @@ describe('Client Repository', () => {
       id: '1',
       name: 'Client 1',
       email: 'email',
-      address: 'address',
+      street: 'Main St',
+      number: 42,
+      complement: 'Apt 5',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105',
       createdAt: new Date(),
       updatedAt: new Date()
     })
@@ -64,6 +79,5 @@ describe('Client Repository', () => {
     expect(foundClient.id.id).toBe('1')
     expect(foundClient.name).toBe('Client 1')
     expect(foundClient.email).toBe('email')
-    expect(foundClient.address).toBe('address')
   })
 })

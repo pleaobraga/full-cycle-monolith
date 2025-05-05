@@ -1,8 +1,8 @@
-import { ValueObject } from "./value-object.interface"
+import { ValueObject } from './value-object.interface'
 
 export class Address implements ValueObject {
   private readonly _street: string
-  private readonly _number: string
+  private readonly _number: number
   private readonly _complement: string
   private readonly _city: string
   private readonly _state: string
@@ -10,7 +10,7 @@ export class Address implements ValueObject {
 
   constructor(
     street: string,
-    number: string,
+    number: number,
     complement: string,
     city: string,
     state: string,
@@ -28,7 +28,7 @@ export class Address implements ValueObject {
     return this._street
   }
 
-  get number(): string {
+  get number(): number {
     return this._number
   }
 

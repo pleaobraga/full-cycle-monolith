@@ -17,6 +17,7 @@ clientRoute.post('/', async (req, res) => {
     const output = await usecase.execute(customerDTO)
     res.status(200).json(output)
   } catch (error) {
+    console.log('error', error)
     res.status(500).json({ error })
   }
 })
