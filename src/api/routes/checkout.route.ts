@@ -5,6 +5,7 @@ import { ProductAdmFacadeFactory } from '../../modules/product-adm/factory/facad
 import { StoreCatalogFacadeFactory } from '../../modules/store-catalog/factory/facade.factory'
 import PaymentFacadeFactory from '../../modules/payment/factory/payment.facade.factory'
 import { InvoiceFacadeFactory } from '../../modules/invoice/factory/facade.factory'
+import { CheckoutRepository } from '../../modules/checkout/repository/order.repostory'
 
 export const checkoutRoute = express.Router()
 
@@ -15,7 +16,7 @@ checkoutRoute.post('/', async (req, res) => {
   const paymentFacade = PaymentFacadeFactory.create()
   const invoiceFacade = InvoiceFacadeFactory.create()
 
-  const checkoutRepository = {}
+  const checkoutRepository = new CheckoutRepository()
 
   const usecase = new PlaceOrderUseCase(
     clientFacade,
