@@ -4,9 +4,14 @@ import { FindClientUseCase } from './find-client.usecase'
 
 const client = new Client({
   id: new Id('1'),
-  name: 'Product 1',
-  email: 'email',
-  address: 'address'
+  name: 'Alice Smith',
+  email: 'alice@example.com',
+  street: 'Main St',
+  number: 42,
+  complement: 'Apt 5',
+  city: 'San Francisco',
+  state: 'CA',
+  zipCode: '94105'
 })
 
 const mockRepository = {
@@ -29,9 +34,14 @@ describe('Find Client UseCase unit test', () => {
     expect(clientRepository.find).toHaveBeenCalledWith(input.id)
     expect(result).toEqual({
       id: '1',
-      name: 'Product 1',
-      email: 'email',
-      address: 'address'
+      name: 'Alice Smith',
+      email: 'alice@example.com',
+      street: 'Main St',
+      number: 42,
+      complement: 'Apt 5',
+      city: 'San Francisco',
+      state: 'CA',
+      zipCode: '94105'
     })
   })
 })

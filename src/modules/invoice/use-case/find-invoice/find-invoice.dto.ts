@@ -8,7 +8,7 @@ export interface FindInvoiceUseCaseOutputDTO {
   document: string
   address: {
     street: string
-    number: string
+    number: number
     complement: string
     city: string
     state: string

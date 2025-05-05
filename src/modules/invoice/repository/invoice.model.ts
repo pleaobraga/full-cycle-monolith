@@ -26,8 +26,8 @@ export class InvoiceModel extends Model {
   @Column({ type: DataType.STRING, allowNull: false })
   declare street: string
 
-  @Column({ type: DataType.STRING, allowNull: false })
-  declare number: string
+  @Column({ type: DataType.NUMBER, allowNull: false })
+  declare number: number
 
   @Column({ type: DataType.STRING })
   declare complement: string

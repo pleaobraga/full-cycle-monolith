@@ -8,14 +8,7 @@ const invoice = new Invoice({
   id: new Id('1'),
   name: 'John Doe',
   document: '123456789',
-  address: new Address(
-    'Street 1',
-    '123',
-    'Apt 4',
-    'City',
-    'State',
-    '12345-678'
-  ),
+  address: new Address('Street 1', 123, 'Apt 4', 'City', 'State', '12345-678'),
   items: [
     { id: new Id('item-1'), name: 'Product A', price: 100 },
     { id: new Id('item-2'), name: 'Product B', price: 200 }
@@ -45,7 +38,7 @@ describe('GenerateInvoiceUseCase', () => {
       document: '123456789',
       address: {
         street: 'Street 1',
-        number: '123',
+        number: 123,
         complement: 'Apt 4',
         city: 'City',
         state: 'State',

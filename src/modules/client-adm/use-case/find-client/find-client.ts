@@ -6,5 +6,10 @@ export interface FindClientOutputDTO {
   id: string
   name: string
   email: string
-  address: string
+  street: string
+  number: number
+  complement: string
+  city: string
+  state: string
+  zipCode: string
 }

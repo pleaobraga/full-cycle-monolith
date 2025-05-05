@@ -14,7 +14,7 @@ describe('GenerateInvoiceUseCase', () => {
       name: 'John Doe',
       document: '123456789',
       street: 'Street 1',
-      number: '123',
+      number: 123,
       complement: 'Apt 4',
       city: 'City',
       state: 'State',

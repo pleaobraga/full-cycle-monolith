@@ -34,7 +34,7 @@ describe('Invoice Repository', () => {
       document: '123456789',
       address: new Address(
         'Street 1',
-        '123',
+        123,
         'Apt 4',
         'City',
         'State',
@@ -60,7 +60,7 @@ describe('Invoice Repository', () => {
     expect(dbInvoice.name).toBe('John Doe')
     expect(dbInvoice.document).toBe('123456789')
     expect(dbInvoice.street).toBe('Street 1')
-    expect(dbInvoice.number).toBe('123')
+    expect(dbInvoice.number).toBe(123)
     expect(dbInvoice.complement).toBe('Apt 4')
     expect(dbInvoice.city).toBe('City')
     expect(dbInvoice.state).toBe('State')
@@ -82,7 +82,7 @@ describe('Invoice Repository', () => {
       name: 'Invoice 1',
       document: 'document',
       street: 'street',
-      number: 'number',
+      number: 1,
       complement: 'complement',
       city: 'city',
       state: 'state',
@@ -98,7 +98,7 @@ describe('Invoice Repository', () => {
     expect(output.id.id).toBe('1')
     expect(output.items).toEqual([])
     expect(output.address.street).toBe('street')
-    expect(output.address.number).toBe('number')
+    expect(output.address.number).toBe(1)
     expect(output.address.complement).toBe('complement')
     expect(output.address.city).toBe('city')
     expect(output.address.state).toBe('state')
