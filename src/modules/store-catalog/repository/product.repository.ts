@@ -33,4 +33,30 @@ export class ProductRepository implements ProductGateway {
       salesPrice: product.salesPrice
     })
   }
+
+  async upsert(product: Product): Promise<void> {
+    const existingProduct = await ProductModel.findOne({
+      where: { id: product.id.id }
+    })
+
+    if (existingProduct) {
+      await ProductModel.update(
+        {
+          name: product.name,
+          description: product.description,
+          salesprice: product.salesPrice
+        },
+        {
+          where: { id: product.id.id }
+        }
+      )
+    } else {
+      await ProductModel.create({
+        id: product.id.id,
+        name: product.name,
+        description: product.description,
+        salesPrice: product.salesPrice
+      })
+    }
+  }
 }

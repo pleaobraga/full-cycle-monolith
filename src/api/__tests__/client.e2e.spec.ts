@@ -29,13 +29,13 @@ describe('Client API E2E Test', () => {
     expect(response.body.email).toBe('alice@example.com')
   })
 
-  // it('should return 500 if address is missing', async () => {
-  //   const response = await request(app).post('/clients').send({
-  //     name: 'John Doe',
-  //     email: 'john@example.com'
-  //   })
+  it('should return 500 if address is missing', async () => {
+    const response = await request(app).post('/clients').send({
+      name: 'John Doe',
+      email: 'john@example.com'
+    })
 
-  //   expect(response.status).toBe(500)
-  //   expect(response.body).toHaveProperty('error')
-  // })
+    expect(response.status).toBe(500)
+    expect(response.body).toHaveProperty('error')
+  })
 })
