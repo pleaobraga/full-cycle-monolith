@@ -12,9 +12,8 @@ invoiceRoute.get('/:id', async (req, res) => {
       id: req.params.id
     }
 
-    const admOutput = await usecase.execute(invoiceDTO)
-
-    res.status(200).json(admOutput)
+    const output = await usecase.execute(invoiceDTO)
+    res.status(200).json(output)
   } catch (error) {
     console.log('error', error)
     res.status(500).json({ error })
