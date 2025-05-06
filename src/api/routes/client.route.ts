@@ -9,6 +9,7 @@ clientRoute.post('/', async (req, res) => {
 
   try {
     const customerDTO = {
+      id: req.body.id,
       name: req.body.name,
       email: req.body.email,
       street: req.body.street,

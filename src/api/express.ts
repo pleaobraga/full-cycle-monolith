@@ -7,11 +7,18 @@ import { ProductModel } from '../modules/product-adm/repository/product.model'
 import { ProductModel as ProductCatalogModel } from '../modules/store-catalog/repository/product.model'
 import { Umzug } from 'umzug'
 import { migrator } from '../test-migrations/config-migrations/migrator'
+import { OrderModel } from '../modules/checkout/repository/order.model'
+import { OrderProductModel } from '../modules/checkout/repository/order-product.model'
+import { checkoutRoute } from './routes/checkout.route'
+import TransactionModel from '../modules/payment/repository/transaction.model'
+import { InvoiceModel } from '../modules/invoice/repository/invoice.model'
+import { InvoiceItemModel } from '../modules/invoice/repository/invoice-item.model'
 
 export const app: Express = express()
 app.use(express.json())
 app.use('/clients', clientRoute)
 app.use('/products', productRoute)
+app.use('/checkout', checkoutRoute)
 
 export let sequelize: Sequelize
 export let migration: Umzug<any>
@@ -23,7 +30,16 @@ export async function setupDb() {
     logging: false
   })
 
-  await sequelize.addModels([ClientModel, ProductModel, ProductCatalogModel])
+  sequelize.addModels([
+    ClientModel,
+    ProductModel,
+    ProductCatalogModel,
+    OrderModel,
+    OrderProductModel,
+    TransactionModel,
+    InvoiceModel,
+    InvoiceItemModel
+  ])
 
   migration = migrator(sequelize)
   await migration.up()
