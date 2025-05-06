@@ -18,7 +18,8 @@ const product2 = new Product({
 
 const mockRepository = {
   find: jest.fn(),
-  findAll: jest.fn().mockReturnValue(Promise.resolve([product1, product2]))
+  findAll: jest.fn().mockReturnValue(Promise.resolve([product1, product2])),
+  upsert: jest.fn()
 }
 
 describe('Find All Products UseCase unit test', () => {

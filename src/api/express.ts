@@ -10,7 +10,7 @@ import { migrator } from '../test-migrations/config-migrations/migrator'
 import { OrderModel } from '../modules/checkout/repository/order.model'
 import { OrderProductModel } from '../modules/checkout/repository/order-product.model'
 import { checkoutRoute } from './routes/checkout.route'
-import TransactionModel from '../modules/payment/repository/transaction.model'
+import { TransactionModel } from '../modules/payment/repository/transaction.model'
 import { InvoiceModel } from '../modules/invoice/repository/invoice.model'
 import { InvoiceItemModel } from '../modules/invoice/repository/invoice-item.model'
 

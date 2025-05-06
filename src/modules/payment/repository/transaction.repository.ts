@@ -1,7 +1,7 @@
-import Transaction from "../domain/transaction";
-import transaction from "../domain/transaction";
-import PaymentGateway from "../gateway/payment.gateway";
-import TransactionModel from "./transaction.model";
+import Transaction from '../domain/transaction'
+import transaction from '../domain/transaction'
+import PaymentGateway from '../gateway/payment.gateway'
+import { TransactionModel } from './transaction.model'
 
 export default class TransactionRepostiory implements PaymentGateway {
   async save(input: transaction): Promise<transaction> {
@@ -11,8 +11,8 @@ export default class TransactionRepostiory implements PaymentGateway {
       amount: input.amount,
       status: input.status,
       createdAt: input.createdAt,
-      updatedAt: input.updatedAt,
-    });
+      updatedAt: input.updatedAt
+    })
 
     return new Transaction({
       id: input.id,
@@ -20,7 +20,7 @@ export default class TransactionRepostiory implements PaymentGateway {
       amount: input.amount,
       status: input.status,
       createdAt: input.createdAt,
-      updatedAt: input.updatedAt,
-    });
+      updatedAt: input.updatedAt
+    })
   }
 }

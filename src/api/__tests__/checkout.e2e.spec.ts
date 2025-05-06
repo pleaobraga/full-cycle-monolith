@@ -48,17 +48,18 @@ describe('Product API E2E Test', () => {
       products: [
         {
           productId: product.id
-        },
-        {
-          productId: product.id
         }
       ]
     }
 
     //checkout api
-    const output = await request(app).post('/checkout').send(checkoutDTO)
+    const response = await request(app).post('/checkout').send(checkoutDTO)
 
-    console.log(`status`, output.status)
-    console.log(`body`, output.body)
+    expect(response.status).toBe(200)
+    expect(response.body.id).toBeDefined()
+    expect(response.body.invoiceId).toBeDefined()
+    expect(response.body.status).toBe('approved')
+    expect(response.body.total).toBe(2500)
+    expect(response.body.products).toEqual([{ productId: '1' }])
   })
 })
