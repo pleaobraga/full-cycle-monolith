@@ -23,7 +23,7 @@ const product = {
   salesPrice: 2500
 }
 
-describe('Product API E2E Test', () => {
+describe('Checkout API E2E Test', () => {
   beforeEach(async () => {
     await setupDb()
   })

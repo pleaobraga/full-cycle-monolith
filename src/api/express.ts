@@ -13,12 +13,14 @@ import { checkoutRoute } from './routes/checkout.route'
 import { TransactionModel } from '../modules/payment/repository/transaction.model'
 import { InvoiceModel } from '../modules/invoice/repository/invoice.model'
 import { InvoiceItemModel } from '../modules/invoice/repository/invoice-item.model'
+import { invoiceRoute } from './routes/invoice.route'
 
 export const app: Express = express()
 app.use(express.json())
 app.use('/clients', clientRoute)
 app.use('/products', productRoute)
 app.use('/checkout', checkoutRoute)
+app.use('/invoice', invoiceRoute)
 
 export let sequelize: Sequelize
 export let migration: Umzug<any>
