@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize-typescript'
 import { ProductModel } from './product.model'
 import { ProductRepository } from './product.repository'
+import { Product } from '../domain/product.entity'
+import { Id } from '../../@shared/domain/value-object/id.value-object'
 
 let sequelize: Sequelize
 describe('Product Repository', () => {
@@ -66,5 +68,44 @@ describe('Product Repository', () => {
     expect(foundProduct.name).toBe('Product 1')
     expect(foundProduct.description).toBe('Description 1')
     expect(foundProduct.salesPrice).toBe(100)
+  })
+
+  it('should upsert a product', async () => {
+    const productRepository = new ProductRepository()
+
+    const productData = {
+      id: new Id('1'),
+      name: 'Product 1',
+      description: 'Initial Description',
+      salesPrice: 100
+    }
+
+    const product = new Product(productData)
+
+    // First: create (no product exists yet)
+    await productRepository.upsert(product)
+
+    let created = await ProductModel.findByPk('1')
+    expect(created).toBeDefined()
+    expect(created?.name).toBe('Product 1')
+    expect(created?.description).toBe('Initial Description')
+    expect(created?.salesPrice).toBe(100)
+
+    // Second: update (product already exists)
+    const updatedData = {
+      ...productData,
+      name: 'Updated Product 1',
+      description: 'Updated Description',
+      salesPrice: 150
+    }
+
+    const updatedProduct = new Product(updatedData)
+
+    await productRepository.upsert(updatedProduct)
+
+    const updated = await ProductModel.findByPk('1')
+    expect(updated?.name).toBe('Updated Product 1')
+    expect(updated?.description).toBe('Updated Description')
+    expect(updated?.salesPrice).toBe(150)
   })
 })

@@ -4,6 +4,7 @@ import { clientRoute } from './routes/client.route'
 import { ClientModel } from '../modules/client-adm/repository/client.model'
 import { productRoute } from './routes/products.route'
 import { ProductModel } from '../modules/product-adm/repository/product.model'
+import { ProductModel as ProductCatalogModel } from '../modules/store-catalog/repository/product.model'
 import { Umzug } from 'umzug'
 import { migrator } from '../test-migrations/config-migrations/migrator'
 
@@ -22,7 +23,7 @@ export async function setupDb() {
     logging: false
   })
 
-  await sequelize.addModels([ClientModel, ProductModel])
+  await sequelize.addModels([ClientModel, ProductModel, ProductCatalogModel])
 
   migration = migrator(sequelize)
   await migration.up()

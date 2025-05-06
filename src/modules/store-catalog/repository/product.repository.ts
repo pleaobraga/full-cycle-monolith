@@ -44,7 +44,7 @@ export class ProductRepository implements ProductGateway {
         {
           name: product.name,
           description: product.description,
-          salesprice: product.salesPrice
+          salesPrice: product.salesPrice
         },
         {
           where: { id: product.id.id }
